@@ -10,6 +10,7 @@ AppWindow::~AppWindow(){
 }
 
 void AppWindow::shutdown() {
+    SDL_Quit();
 }
 
 void AppWindow::initialize() {
@@ -36,4 +37,8 @@ void AppWindow::initialize() {
     }
 
 
+}
+
+SDLContext* AppWindow::getContext() {
+    return const_cast<SDLContext*>(this->sdlContext);
 }
