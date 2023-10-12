@@ -21,7 +21,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 
 
-file(GLOB CPP_SOURCES "src/*.cpp" "src/core/*.cpp")
+file(GLOB CPP_SOURCES "src/*.cpp" "src/core/*.cpp" "src/world/*.cpp")
 
 # Create the executable
 add_executable(novaSquadron ${CPP_SOURCES})

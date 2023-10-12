@@ -12,16 +12,21 @@ void Game::initialize() {
     spdlog::info("Initializing the game");
     this->appWindow = new AppWindow();
     this->appWindow->initialize();
-}
+    this->world = new World(appWindow);
+};
 
 void Game::shutdown() {
      spdlog::info("Shutting down the game");
+     if (this->world != nullptr) {
+        delete this->world;
+     }
+
      if (this->appWindow != nullptr) {
         this->appWindow->shutdown();
         delete this->appWindow;
      }
 
-}
+};
 
 void Game::run() {
     spdlog::info("Running main game loop");
@@ -33,8 +38,8 @@ void Game::run() {
         }
 
         handleEvents(event);
-        updateWorld();
-        renderWorld();
+        world->updateWorld();
+        world->renderWorld();
         delayForFPS();
     }
 }
@@ -45,18 +50,10 @@ bool Game::shouldQuit(SDL_Event event) {
         (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE);
 }
 
-void Game::handleEvents(SDL_Event event) {
-
-}
-
-void Game::updateWorld() {
-
-}
-
-void Game::renderWorld() {
-    this->appWindow->render();
-}
-
 void Game::delayForFPS() {
+    SDL_Delay(10);  //@todo
+}
+
+void Game::handleEvents(SDL_Event event) {
 
 }

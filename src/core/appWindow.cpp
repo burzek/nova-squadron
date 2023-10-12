@@ -1,4 +1,4 @@
-#include "appWindows.hpp"
+#include "appWindow.hpp"
 
 
 AppWindow::AppWindow() {
@@ -35,10 +35,16 @@ void AppWindow::initialize() {
         spdlog::error("Error creating renderer, error description: {}", SDL_GetError());
         exit(1);
     }
-
-
 }
 
-SDLContext* AppWindow::getContext() {
-    return const_cast<SDLContext*>(this->sdlContext);
+void AppWindow::presentScene() {
+    SDL_RenderPresent(this->sdlContext->renderer);
 }
+
+const SDLContext* AppWindow::getContext() const {
+    return this->sdlContext;
+}
+
+// SDLContext* AppWindow::getContext() const {
+//     return const_cast<SDLContext*>(this->sdlContext);
+// }

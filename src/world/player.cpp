@@ -1,7 +1,6 @@
 #include "player.hpp"
 
-Player::Player() {
-
+Player::Player() : Entity(true, 100) {
 }
 
 Player::~Player() {
