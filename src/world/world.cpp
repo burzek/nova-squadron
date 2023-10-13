@@ -8,14 +8,14 @@ World::~World() {
 }
 
 void World::updateWorld(){
-    // background->updateState();
-    player->updateState();
+    //background->updateState();
+    // player->updateState();
 }
 
-void World::renderWorld(){
-    //render all entities
+void World::renderWorld() {
+    appWindow->prepareScene();
     background->render(appWindow);
-    player->render();
+    // player->render();
     appWindow->presentScene();
 
 

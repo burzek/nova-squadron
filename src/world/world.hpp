@@ -2,6 +2,7 @@
 #define D76DE4BD_5A88_4ADF_B64B_B5D3E8AA705F
 
 #include <vector>
+#include "spdlog/spdlog.h"
 #include "player.hpp"
 #include "background.hpp"
 

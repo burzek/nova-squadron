@@ -1,6 +1,8 @@
 {
     "cmake.sourceDirectory": "/home/boris/Workspaces/cpp/games/nova-squadron",
     "files.associations": {
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "iterator": "cpp",
+        "random": "cpp"
     }
 }

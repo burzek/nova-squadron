@@ -37,6 +37,12 @@ void AppWindow::initialize() {
     }
 }
 
+void AppWindow::prepareScene() {
+    SDL_SetRenderDrawColor(this->sdlContext->renderer, 0, 0, 0, 0);
+    SDL_RenderClear(this->sdlContext->renderer);
+}
+
+
 void AppWindow::presentScene() {
     SDL_RenderPresent(this->sdlContext->renderer);
 }
@@ -45,6 +51,3 @@ const SDLContext* AppWindow::getContext() const {
     return this->sdlContext;
 }
 
-// SDLContext* AppWindow::getContext() const {
-//     return const_cast<SDLContext*>(this->sdlContext);
-// }

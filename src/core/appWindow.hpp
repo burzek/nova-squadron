@@ -13,6 +13,7 @@ class AppWindow  {
         virtual ~AppWindow();
         void shutdown();
         void initialize();
+        void prepareScene();
         void presentScene();
         const SDLContext* getContext() const;
 };
