@@ -21,14 +21,21 @@ Background::~Background() {
 void Background::render(const AppWindow* appWindow) {
     SDL_RenderClear(appWindow->getContext()->renderer);
     SDL_SetRenderDrawColor(appWindow->getContext()->renderer, 96, 128, 255, 255);
-    for (auto star : stars) {
-        auto color = 255 - ((star.plane + 1) * 50);
+    for (auto& star : stars) {
+        auto color = 100 + ((star.plane + 1) * 50);
         SDL_SetRenderDrawColor(appWindow->getContext()->renderer,
-            star.plane, color, color, color);
+            color, color, color, star.plane);
         SDL_RenderDrawPoint(appWindow->getContext()->renderer, 
             star.star_position.x, star.star_position.y);
     }
     
 };
+
+void Background::updateState() {
+    for (auto& star : stars) {
+        star.star_position.x -= (star.plane + 1) * 2;
+        star.star_position.x  = star.star_position.x < 0 ? constants::WINDOW_WIDTH : star.star_position.x;
+    }
+}
 
 

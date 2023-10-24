@@ -1,0 +1,7 @@
+#ifndef B6019C29_6D3D_472D_AB36_8F42DACD0098
+#define B6019C29_6D3D_472D_AB36_8F42DACD0098
+class Stateful {
+    virtual void updateState() = 0;
+};
+
+#endif /* B6019C29_6D3D_472D_AB36_8F42DACD0098 */

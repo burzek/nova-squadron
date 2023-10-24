@@ -8,7 +8,7 @@ World::~World() {
 }
 
 void World::updateWorld(){
-    //background->updateState();
+    background->updateState();
     // player->updateState();
 }
 
