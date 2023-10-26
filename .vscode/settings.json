@@ -3,6 +3,8 @@
     "files.associations": {
         "string_view": "cpp",
         "iterator": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "string": "cpp",
+        "exception": "cpp"
     }
 }

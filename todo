@@ -1,5 +1,8 @@
-- package su ok?
 - constexp na context z AppWindow
 - premenovat AppWindow na nieco rozumne
-- novy package gfx pre appWIndow, sprite.....?
+- novy package gfx pre appWindow, sprite.....?
  
+
+
+ sprites.dat
+ ID,nazov suboru, pocet spritov, pozicia x, od ktorej sa sprite zacina
