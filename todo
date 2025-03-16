@@ -1,7 +1,7 @@
+- uniqe_ptr/shared_ptr
 - constexp na context z AppWindow
 - premenovat AppWindow na nieco rozumne
 - novy package gfx pre appWindow, sprite.....?
- 
 
 
  sprites.dat

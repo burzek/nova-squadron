@@ -8,25 +8,27 @@ SpriteSheetManager::SpriteSheetManager() {
 }
 
 SpriteSheetManager::~SpriteSheetManager() {
-    if (this->spriteSheetCache != nullptr) {
-        for (const auto &keyVal : this->spriteSheetCache) {
-            keyVal.second->destroy();
-            delete keyVal.second;
+    if (this->spriteSheetCache) {
+        auto &mapRef = *(this->spriteSheetCache);
+        for (const auto &keyVal : mapRef) {
+            if (keyVal.second) {
+                keyVal.second->destroy();
+            }
         }
     }
 }
 
 
 
-const SpriteSheet *SpriteSheetManager::getSpriteSheet(const std::string spriteSheetId){
+const std::unique_ptr<SpriteSheet> SpriteSheetManager::getSpriteSheet(const std::string spriteSheetId){
     return nullptr;
 }
 
 void SpriteSheetManager::loadSpriteSheets(const std::string assetPath) {
     //load info file
-    fstream fs;
+    std::fstream fs;
     fs.open("assets/sprites.dat");
-    if (!fs.open()) {
+    if (!fs.is_open()) {
         spdlog::error("Cannot open sprites.dat file");
         throw GameException("Cannot open sprites.dat file");
     }

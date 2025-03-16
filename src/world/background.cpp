@@ -18,15 +18,15 @@ Background::Background() {
 Background::~Background() {
 };
 
-void Background::render(const AppWindow* appWindow) {
-    SDL_RenderClear(appWindow->getContext()->renderer);
-    SDL_SetRenderDrawColor(appWindow->getContext()->renderer, 96, 128, 255, 255);
+void Background::render(const SDLContext& sdlContext) {
+    SDL_RenderClear(sdlContext.renderer.get());
+    SDL_SetRenderDrawColor(sdlContext.renderer, 96, 128, 255, 255);
     for (auto& star : stars) {
-        auto color = 100 + ((star.plane + 1) * 50);
-        SDL_SetRenderDrawColor(appWindow->getContext()->renderer,
-            color, color, color, star.plane);
-        SDL_RenderDrawPoint(appWindow->getContext()->renderer, 
-            star.star_position.x, star.star_position.y);
+       auto color = 100 + ((star.plane + 1) * 50);
+       SDL_SetRenderDrawColor(sdlContext.renderer,
+           color, color, color, star.plane);
+       SDL_RenderDrawPoint(sdlContext.renderer, 
+           star.star_position.x, star.star_position.y);
     }
     
 };
@@ -37,5 +37,3 @@ void Background::updateState() {
         star.star_position.x  = star.star_position.x < 0 ? constants::WINDOW_WIDTH : star.star_position.x;
     }
 }
-
-

@@ -9,7 +9,7 @@
 #include "../utils/random.hpp"
 
 
-class Background : public Renderable, Stateful {
+class Background : public Entity {
     const int MAX_STARS = 50;
     const int PLANES_COUNT = 3;
     struct Star {
@@ -22,8 +22,13 @@ class Background : public Renderable, Stateful {
     public:
         Background();
         ~Background();
-        void render(const AppWindow *appWindow);
+        void render(const SDLContext& sdlContext);
         void updateState();
+        int getInitialHealthPoints() {return 0;};
+        bool isRenderable() {return false;};
+        bool isDestroyable() {return false;};
+        EntityType getType() {return EntityType::BACKGROUND;};
+
 };
 
 #endif /* F5296AD1_0CC6_40D7_84B7_011D4C4ACF7D */

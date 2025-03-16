@@ -13,6 +13,7 @@ class SpriteSheet {
     public:
         SpriteSheet(const std::string assetPath);
         virtual ~SpriteSheet();
+        virtual void destroy();
         const Sprite* getCurrentSprite();
         int setCurrentSpriteIndex(int spriteIndex);
         int getCurrentSpriteIndex();

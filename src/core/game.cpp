@@ -2,7 +2,6 @@
 
 
 Game::Game() {
-
 }
 
 Game::~Game() {
@@ -10,22 +9,14 @@ Game::~Game() {
 
 void Game::initialize() {
     spdlog::info("Initializing the game");
-    this->appWindow = new AppWindow();
+    this->appWindow = std::make_unique<AppWindow>();
     this->appWindow->initialize();
-    this->world = new World(appWindow);
+    this->world = std::make_unique<World>();
+    // this->world->initialize();
 };
 
 void Game::shutdown() {
      spdlog::info("Shutting down the game");
-     if (this->world != nullptr) {
-        delete this->world;
-     }
-
-     if (this->appWindow != nullptr) {
-        this->appWindow->shutdown();
-        delete this->appWindow;
-     }
-
 };
 
 void Game::run() {
@@ -38,8 +29,8 @@ void Game::run() {
         }
 
         handleEvents(event);
-        world->updateWorld();
-        world->renderWorld();
+        // world->update();
+        appWindow->renderWorld(world);
         delayForFPS();
     }
 }

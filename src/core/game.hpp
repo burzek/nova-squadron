@@ -8,8 +8,8 @@
 
 class Game {
     private:
-        AppWindow* appWindow;
-        World* world;
+        std::unique_ptr<AppWindow> appWindow;
+        std::unique_ptr<World> world;
         bool shouldQuit(SDL_Event event);
         void delayForFPS();
         void handleEvents(SDL_Event event);

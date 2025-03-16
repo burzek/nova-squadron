@@ -14,6 +14,6 @@ class Sprite {
         virtual ~Sprite();
         void renderSpriteAt(const AppWindow* appWindow, int posX, int posY);
 
-}
+};
 
 #endif /* A3350234_D481_4C60_BD80_A8774A12BEE1 */

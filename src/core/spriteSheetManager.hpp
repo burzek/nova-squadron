@@ -8,11 +8,12 @@
 
 class SpriteSheetManager {
     private:
-        std::map<std::string, SpriteSheet*> spriteSheetCache;
+        std::unique_ptr<std::map<std::string, std::unique_ptr<SpriteSheet>>> spriteSheetCache;
+
     public:
         SpriteSheetManager();
         ~SpriteSheetManager();
-        const SpriteSheet* getSpriteSheet(const std::string spriteSheetId);
+        const std::unique_ptr<SpriteSheet> getSpriteSheet(const std::string spriteSheetId);
 
         void loadSpriteSheets(const std::string assetPath);
 

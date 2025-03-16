@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(NovaSquadron)
 
-# Set C++ standard to C++11 (or higher if needed)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
@@ -12,7 +11,7 @@ if(NOT SDL2_FOUND)
     message(SEND_ERROR "Failed to find SDL2")
     return()
 endif()
-
+link_directories()
 # SPDLOG library
 find_package(spdlog REQUIRED)
 

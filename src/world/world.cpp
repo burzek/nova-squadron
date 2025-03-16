@@ -1,22 +1,33 @@
 #include "world.hpp"
 
-World::World(AppWindow* appWindow) : player(new Player()), background(new Background()) {
-    this->appWindow = appWindow;
+World::World() {
+    this->entities = std::map<EntityType, std::unique_ptr<Entity>>();
+    this->entities[EntityType::PLAYER] = std::make_unique<Player>();
+    this->entities[EntityType::ENEMY] = std::make_unique<Enemy>();
 };
 
 World::~World() {
 }
 
 void World::updateWorld(){
-    background->updateState();
-    // player->updateState();
+    for (auto& entity : this->entities) {
+        entity.second->updateState();
+    }
+};
+
+
+const std::vector<EntityType, std::unique_ptr<Entity>>& World::getRenderableEntities() const {
+    std::vector<EntityType, std::unique_ptr<Entity>> renderableEntities;
+    for (auto& entity : this->entities) {
+        if (entity.second->isRenderable()) {
+            renderableEntities.push_back(entity.first);
+        }
+    }
+    return renderableEntities;
 }
 
-void World::renderWorld() {
-    appWindow->prepareScene();
-    background->render(appWindow);
-    // player->render();
-    appWindow->presentScene();
-
-
+const Player& World::getPlayer() const {
+    return *dynamic_cast<Player*>(this->entities.at(EntityType::PLAYER).get());
 }
+
+

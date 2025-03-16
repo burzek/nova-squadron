@@ -4,15 +4,18 @@
 
 #include "SDL2/SDL.h"
 #include "defs.h"
+#include "../world/world.hpp"
 
 class AppWindow  {
     private:
-        SDLContext* sdlContext;
+        std::unique_ptr<SDLContext> sdlContext;
     public:
         AppWindow();
         virtual ~AppWindow();
         void shutdown();
         void initialize();
+        void renderWorld(std::unique_ptr<World> world);
+    private:
         void prepareScene();
         void presentScene();
         const SDLContext* getContext() const;

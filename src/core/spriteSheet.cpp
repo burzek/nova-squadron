@@ -9,6 +9,10 @@ SpriteSheet::~SpriteSheet() {
 
 }
 
+void SpriteSheet::destroy() {
+    spdlog::debug("SpriteSheet destroy called");
+}
+
 const Sprite *SpriteSheet::getCurrentSprite() {
     return nullptr;
 }
