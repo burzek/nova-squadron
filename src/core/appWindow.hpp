@@ -4,7 +4,10 @@
 
 #include "SDL2/SDL.h"
 #include "defs.h"
-#include "../world/world.hpp"
+#include "world.hpp"
+
+class World; // Forward declaration of World class
+
 
 class AppWindow  {
     private:
@@ -14,7 +17,7 @@ class AppWindow  {
         virtual ~AppWindow();
         void shutdown();
         void initialize();
-        void renderWorld(std::unique_ptr<World> world);
+        void renderWorld(const World& world);
     private:
         void prepareScene();
         void presentScene();

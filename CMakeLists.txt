@@ -16,11 +16,11 @@ link_directories()
 find_package(spdlog REQUIRED)
 
 # Include directories for headers
-include_directories(${SDL2_INCLUDE_DIRS})
-
+include_directories(${SDL2_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src/core ${CMAKE_SOURCE_DIR}/src/utils ${CMAKE_SOURCE_DIR}/src/world)
 
 
 file(GLOB CPP_SOURCES "src/*.cpp" "src/core/*.cpp" "src/world/*.cpp" "src/utils/*.cpp")
+
 
 # Create the executable
 add_executable(novaSquadron ${CPP_SOURCES})

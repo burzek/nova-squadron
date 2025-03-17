@@ -1,7 +1,7 @@
 #ifndef C4DA406E_30F3_482A_9FE3_4E15D08D1ABE
 #define C4DA406E_30F3_482A_9FE3_4E15D08D1ABE
 #include <string>
-#include "../core/defs.h"
+#include "defs.h"
 
 enum EntityType {
     PLAYER,
@@ -24,10 +24,11 @@ class Entity {
         virtual void updateState() = 0;
         virtual bool isRenderable() = 0;
         virtual bool isDestroyable() = 0;
-        virtual int getInitialHealthPoints() = 0;
 
+        void setInitialHealthPoints(int hp) {this->hp = hp;}
         int getHealthPoints() {return hp;}
         SDL_Point getPosition() {return position;}
+        void setPosition(SDL_Point position) {this->position = position;}
         
         
 };

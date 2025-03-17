@@ -16,7 +16,7 @@ class World {
                 World();
                 ~World();
                 void updateWorld();
-                const std::vector<EntityType, std::unique_ptr<Entity>>& getRenderableEntities() const;
+                const std::vector<EntityType>& getRenderableEntities() const;
                 const Player& getPlayer() const;
         
 

@@ -20,12 +20,12 @@ Background::~Background() {
 
 void Background::render(const SDLContext& sdlContext) {
     SDL_RenderClear(sdlContext.renderer.get());
-    SDL_SetRenderDrawColor(sdlContext.renderer, 96, 128, 255, 255);
+    SDL_SetRenderDrawColor(sdlContext.renderer.get(), 96, 128, 255, 255);
     for (auto& star : stars) {
        auto color = 100 + ((star.plane + 1) * 50);
-       SDL_SetRenderDrawColor(sdlContext.renderer,
+       SDL_SetRenderDrawColor(sdlContext.renderer.get(),
            color, color, color, star.plane);
-       SDL_RenderDrawPoint(sdlContext.renderer, 
+       SDL_RenderDrawPoint(sdlContext.renderer.get(), 
            star.star_position.x, star.star_position.y);
     }
     

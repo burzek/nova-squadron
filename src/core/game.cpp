@@ -30,7 +30,7 @@ void Game::run() {
 
         handleEvents(event);
         // world->update();
-        appWindow->renderWorld(world);
+        appWindow->renderWorld(*world);
         delayForFPS();
     }
 }

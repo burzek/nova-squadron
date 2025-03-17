@@ -23,15 +23,12 @@ void AppWindow::initialize() {
         exit(1);
     }
 
-    std::unique_ptr<SDL_Window, void(*)(SDL_Window*)> sdlWindow = std::unique_ptr<SDL_Window,  void(*)(SDL_Window*)>
-    (
+    SDL_Window* sdlWindow = 
         SDL_CreateWindow(
             constants::WINDOW_NAME.c_str(), 
             constants::WINDOW_X, constants::WINDOW_Y, 
             constants::WINDOW_WIDTH, constants::WINDOW_HEIGHT, 
             SDL_WINDOW_SHOWN
-        ),
-        SDL_DestroyWindow
     );
     if (!sdlWindow) {
         spdlog::error("Error creating window, error description: {}", SDL_GetError());
@@ -39,23 +36,23 @@ void AppWindow::initialize() {
     }
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-    std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)> sdlRenderer = std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)>
-    (
-        SDL_CreateRenderer(sdlWindow.get(), -1, SDL_RENDERER_ACCELERATED), 
-        SDL_DestroyRenderer);
+    SDL_Renderer* sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
     if (!sdlRenderer) {
         spdlog::error("Error creating renderer, error description: {}", SDL_GetError());
         exit(1);
     }
 
-    this->sdlContext->renderer = std::move(sdlRenderer);
-    this->sdlContext->window = std::move(sdlWindow);
+    this->sdlContext->renderer = std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)>(sdlRenderer, SDL_DestroyRenderer);
+    this->sdlContext->window = std::unique_ptr<SDL_Window, void(*)(SDL_Window*)>(sdlWindow, SDL_DestroyWindow);
 
 }
 
-void AppWindow::renderWorld(std::unique_ptr<World> world) {
+void AppWindow::renderWorld(const World& world) {
     this->prepareScene();
-    world.get()->getRenderableEntities()->render();
+
+    // for (auto entity : world.getRenderableEntities()) {
+    //     entity->render(this->getContext());
+    // }
     this->presentScene();
 }
 
