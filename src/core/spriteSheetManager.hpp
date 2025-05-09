@@ -3,9 +3,10 @@
 
 #include <map>
 #include <string>
-
+#include <fstream>
 #include "spriteSheet.hpp"
 
+class SpriteSheet;
 class SpriteSheetManager {
     private:
         std::unique_ptr<std::map<std::string, std::unique_ptr<SpriteSheet>>> spriteSheetCache;
@@ -13,13 +14,15 @@ class SpriteSheetManager {
     public:
         SpriteSheetManager();
         ~SpriteSheetManager();
-        const std::unique_ptr<SpriteSheet> getSpriteSheet(const std::string spriteSheetId);
+        void initialize();
+        void shutdown();
+
+
+        // const std::unique_ptr<SpriteSheet> getSpriteSheet(const std::string spriteSheetId);
 
         void loadSpriteSheets(const std::string assetPath);
+        void processSpriteSheetLine(const std::string& spriteSheetLine, const int lineNo);
 
-        void loadSpritesInfo(const std::string assetPath);
-
-        void loadSpriteSheets();
 };
 
 #endif /* EEAF5F71_E869_4A04_9BEC_6AB94C7961CD */

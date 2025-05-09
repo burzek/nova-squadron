@@ -18,7 +18,7 @@ Background::Background() {
 Background::~Background() {
 };
 
-void Background::render(const SDLContext& sdlContext) {
+void Background::render(const SDLContext& sdlContext) const {
     SDL_RenderClear(sdlContext.renderer.get());
     SDL_SetRenderDrawColor(sdlContext.renderer.get(), 96, 128, 255, 255);
     for (auto& star : stars) {

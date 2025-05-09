@@ -20,14 +20,14 @@ class Entity {
         Entity(SDL_Point position);
         virtual ~Entity();
         virtual EntityType getType() = 0;
-        virtual void render(const SDLContext& sdlContext) = 0;
+        virtual void render(const SDLContext& sdlContext) const = 0;
         virtual void updateState() = 0;
         virtual bool isRenderable() = 0;
         virtual bool isDestroyable() = 0;
 
         void setInitialHealthPoints(int hp) {this->hp = hp;}
-        int getHealthPoints() {return hp;}
-        SDL_Point getPosition() {return position;}
+        int getHealthPoints() const {return hp;}
+        SDL_Point getPosition() const {return position;}
         void setPosition(SDL_Point position) {this->position = position;}
         
         

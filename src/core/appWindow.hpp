@@ -3,6 +3,8 @@
 
 
 #include "SDL2/SDL.h"
+#include "SDL.h"
+#include "SDL2/SDL_image.h"
 #include "defs.h"
 #include "world.hpp"
 
@@ -21,7 +23,7 @@ class AppWindow  {
     private:
         void prepareScene();
         void presentScene();
-        const SDLContext* getContext() const;
+        // const SDLContext* getContext() const;
 };
 
 #endif /* CE5F263B_E90A_4F7A_8DC6_FA6C581CE7E5 */

@@ -20,7 +20,7 @@ void AppWindow::shutdown() {
 void AppWindow::initialize() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         spdlog::error("Error initializing SDL subsystem");
-        exit(1);
+        std::exit(1);
     }
 
     SDL_Window* sdlWindow = 
@@ -32,14 +32,20 @@ void AppWindow::initialize() {
     );
     if (!sdlWindow) {
         spdlog::error("Error creating window, error description: {}", SDL_GetError());
-        exit(1);
+        std::exit(1);
     }
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_Renderer* sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
     if (!sdlRenderer) {
         spdlog::error("Error creating renderer, error description: {}", SDL_GetError());
-        exit(1);
+        std::exit(1);
+    }
+
+    //init IMG
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+         spdlog::error("IMG_Init failed: {}", IMG_GetError());
+        std::exit(1);
     }
 
     this->sdlContext->renderer = std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer*)>(sdlRenderer, SDL_DestroyRenderer);
@@ -50,9 +56,10 @@ void AppWindow::initialize() {
 void AppWindow::renderWorld(const World& world) {
     this->prepareScene();
 
-    // for (auto entity : world.getRenderableEntities()) {
-    //     entity->render(this->getContext());
-    // }
+
+    for (auto entity : world.getRenderableEntities()) {
+        entity.get().render(*sdlContext);
+    }
     this->presentScene();
 }
 
@@ -64,9 +71,5 @@ void AppWindow::prepareScene() {
 
 void AppWindow::presentScene() {
     SDL_RenderPresent(this->sdlContext->renderer.get());
-}
-
-const SDLContext* AppWindow::getContext() const {
-    return this->sdlContext.get();
 }
 

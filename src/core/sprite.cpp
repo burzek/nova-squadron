@@ -7,6 +7,6 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::renderSpriteAt(const AppWindow *appWindow, int posX, int posY)
-{
-}
+// void Sprite::renderSpriteAt(const AppWindow *appWindow, int posX, int posY)
+// {
+// }

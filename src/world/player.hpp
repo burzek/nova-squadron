@@ -11,7 +11,7 @@ class Player : public Entity {
         Player();
         virtual ~Player();
         
-        void render(const SDLContext& sdlContext);
+        void render(const SDLContext& sdlContext) const;
         void updateState();
         EntityType getType() {return EntityType::PLAYER;};
         bool isRenderable() {return true;};

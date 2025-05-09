@@ -1,8 +1,5 @@
-- uniqe_ptr/shared_ptr
-- constexp na context z AppWindow
-- premenovat AppWindow na nieco rozumne
-- novy package gfx pre appWindow, sprite.....?
+ exit(1) nahradit std::exit(1) alebo nieco rozumne (exceptionn a handler?)
 
-
+------------------------------
  sprites.dat
  ID,nazov suboru, pocet spritov, pozicia x, od ktorej sa sprite zacina

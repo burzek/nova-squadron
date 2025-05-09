@@ -22,7 +22,7 @@ class Background : public Entity {
     public:
         Background();
         ~Background();
-        void render(const SDLContext& sdlContext);
+        void render(const SDLContext& sdlContext) const;
         void updateState();
         int getInitialHealthPoints() {return 0;};
         bool isRenderable() {return false;};

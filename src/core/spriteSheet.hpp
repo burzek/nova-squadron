@@ -7,14 +7,17 @@
 
 class SpriteSheet {
     private:
+        std::string spriteSheetId;
         int currentSpriteIndex;
         int spriteCount;
         SDL_Surface* spritesheet;
+        bool lazyLoaded;
     public:
-        SpriteSheet(const std::string assetPath);
+        SpriteSheet(const std::string spriteSheetId, const std::string assetPath, int spriteCount, std::vector<int> spriteDiv);
         virtual ~SpriteSheet();
         virtual void destroy();
-        const Sprite* getCurrentSprite();
+        void initialize(const std::string assetPath, const std::vector<int> spriteDiv);
+        // const Sprite* getCurrentSprite();
         int setCurrentSpriteIndex(int spriteIndex);
         int getCurrentSpriteIndex();
         int next();

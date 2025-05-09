@@ -7,16 +7,19 @@
 #include "player.hpp"
 #include "background.hpp"
 #include "enemy.hpp"
+#include "../core/spriteSheetManager.hpp"
 
-
+class SpriteSheetManager;
 class World {
         private:
                 std::map<EntityType, std::unique_ptr<Entity>> entities;
+                std::unique_ptr<SpriteSheetManager> spriteSheetManager;
         public:
                 World();
                 ~World();
+                void initialize();
                 void updateWorld();
-                const std::vector<EntityType>& getRenderableEntities() const;
+                std::vector<std::reference_wrapper<const Entity>> getRenderableEntities() const;
                 const Player& getPlayer() const;
         
 

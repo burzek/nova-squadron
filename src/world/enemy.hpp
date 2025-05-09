@@ -7,7 +7,7 @@ class Enemy : Entity {
         Enemy();
         virtual ~Enemy();
                 
-        virtual void render(const SDLContext& sdlContext) = 0;
+        // const virtual void render(const SDLContext& sdlContext) = 0;
         virtual void updateState() = 0;
         virtual EntityType getType() = 0;
         virtual int getInitialHealthPoints() = 0;

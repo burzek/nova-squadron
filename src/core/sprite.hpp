@@ -12,7 +12,7 @@ class Sprite {
     public:
         Sprite();
         virtual ~Sprite();
-        void renderSpriteAt(const AppWindow* appWindow, int posX, int posY);
+        // void renderSpriteAt(const AppWindow* appWindow, int posX, int posY);
 
 };
 

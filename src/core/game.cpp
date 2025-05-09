@@ -12,11 +12,15 @@ void Game::initialize() {
     this->appWindow = std::make_unique<AppWindow>();
     this->appWindow->initialize();
     this->world = std::make_unique<World>();
-    // this->world->initialize();
+    this->world->initialize();
+
 };
+
+
 
 void Game::shutdown() {
      spdlog::info("Shutting down the game");
+     this->appWindow->shutdown();
 };
 
 void Game::run() {
@@ -29,7 +33,7 @@ void Game::run() {
         }
 
         handleEvents(event);
-        // world->update();
+        world->updateWorld();
         appWindow->renderWorld(*world);
         delayForFPS();
     }
